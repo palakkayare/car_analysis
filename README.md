@@ -3,6 +3,8 @@
 ### Steps for running this project
 * Clone this repo to local
   `git clone https://github.com/palakkayare/car_analysis`
+* Install Python ['3.8.0'](https://www.python.org/downloads/release/python-380/)
+  - You must have Python version 3.8.0 installed to run this project
 * Create a virtual environment - To create virtual env in windows refer [How to create venv in widows](https://medium.com/co-learning-lounge/create-virtual-environment-python-windows-2021-d947c3a3ca78)
   `python -m venv ~/car_analysis`
 * Activate the environment
