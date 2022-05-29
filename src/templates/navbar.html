@@ -1,0 +1,43 @@
+{% load static %}
+{% url 'home' as path_to_home %}
+{% url 'login' as path_to_login %}
+{% url 'logout' as path_to_logout%}
+{% url 'products:main-products-view' as path_to_performance %}
+{% url 'products:add-purchase-view' as path_to_adding_records %}
+{% url 'csvs:upload-view' as path_to_upload %}
+{% url 'customers:main-customers-view' as path_to_customers %}
+{% url 'products:sales-view' as path_to_sales %}
+{% url 'csvs:show_csv_data' as path_to_dataset %}
+{% url 'csvs:show_cleaned_csv_data' as path_to_cleaned_dataset %}
+
+
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-red w3-card w3-left-align w3-large" style="display: flex; justify-content: space-between">
+        <a href={{path_to_home}} style="margin-right: 5px; border-radius: 4px;" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+      <div style="border: 1px solid; padding: 0px 10px; border: 1px solid; padding: 0px 10px; position: absolute; left: 42%;">
+        <img src="{% static 'cars2.png' %}" style="width: 3rem" />
+        <text>Automotive analysis</text>
+      </div>
+      {% if request.user.is_authenticated %}
+        <div style="display: flex; justify-content: right" >
+            <a href={{path_to_dataset}} style="margin-right: 5px; border-radius: 4px;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View dataset</a>
+            <a href={{path_to_cleaned_dataset}} style="margin-right: 5px; border-radius: 4px;" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">View cleaned dataset</a>
+            <a href={{path_to_logout}} class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Logout!</a>
+        </div>
+      {% else %}   
+        <a href={{path_to_login}} class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login!</a>
+      {% endif %}
+    </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    {% if request.user.is_authenticated %}
+        <a href={{path_to_dataset}} class="w3-bar-item w3-button w3-padding-large">View Dataset</a>
+        <a href={{path_to_cleaned_dataset}} class="w3-bar-item w3-button w3-padding-large">View cleaned dataset</a>
+        <a href={{path_to_logout}} class="w3-bar-item w3-button w3-padding-large">Logout!</a>
+      {% else %}   
+        <a href={{path_to_login}} class="w3-bar-item w3-button w3-padding-large">Login!</a>
+        {% endif %}
+    </div>
+  </div>
+   

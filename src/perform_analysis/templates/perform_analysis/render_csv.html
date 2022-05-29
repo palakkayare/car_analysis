@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}CSV file{% endblock title %}
+
+{% block content %}
+    <div style="overflow: scroll; margin-top: 3rem;">
+        {{loaded_data | safe}}
+    </div>
+{% endblock content %}
+

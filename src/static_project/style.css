@@ -1,0 +1,54 @@
+.mymodal{
+    height: 400px ! important;
+    top: 200px ! important;
+    font-size : 20px ! important;
+}
+
+.ui.container h5{
+    font-size: 1.2rem !important;
+}
+
+ul li {
+    margin: 0 0 10px 0;
+}
+
+.ui.button{
+    width: 200px;
+    border-radius: 0px ! important;
+    
+}
+.block-center{
+    text-align: center ! important;
+}
+
+.field-with {
+    width: 100%;
+
+}
+.mtop {
+    margin-top: 10px ! important;
+}
+
+.dataframe {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.dataframe td, .dataframe th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.dataframe tr:nth-child(even){background-color: #f2f2f2;}
+
+.dataframe tr:hover {background-color: #ddd;}
+
+.dataframe th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1b1c1daf;
+    color: white;
+}

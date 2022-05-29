@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}home{% endblock title %}
+
+{% block content %}
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="height: 100%;color:black !important; background: url('https://datascience.univie.ac.at/fileadmin/_processed_/csm_DSBanner_Pictogram_new_0d874a853f.png');">
+    <div style="background: linear-gradient(180deg, #000000ab, transparent);width: 100%;padding: 6%;color: #fffdfd;" >
+        <h1 class="w3-margin w3-jumbo">Welcome</h1>
+        <p class="w3-xlarge">to the automotive analysis app</p>
+        <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'csvs:index_view' %}">Get Started</a>
+    </div>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content" style="margin-left: 7%">
+    <div class="w3-twothird">
+      <h1>Automotive industry</h1>
+
+      <p class="w3-text-grey">The automotive industry is one of the largest industries out there it's a 2.6 trillion dollar industry!<br/>
+          But inside the industry there are too many categories and subcategories constructed by too many variables that it almost safe to say that every category is an industry of itself. for instance the car body variable is a vital one, as diffrernt body types are being used for very different reason here is a list of some car body type:</p>
+          <ul>
+              <li>SEDAN</li>
+              <li>COUPE</li>
+              <li>STATION WAGON</li>
+              <li>HATCHBACK</li>
+              <li>CONVERTIBLE</li>
+              <li>SPORT-UTILITY VEHICLE (SUV)</li>
+              <li>MINIVAN</li>
+          </ul>
+    </div>
+
+    <div class="w3-third w3-center">
+        <img src="http://carsonelove.com/wp-content/uploads/2014/01/Type-of-Cars.jpg" style="width:53rem" />
+      {% comment %} <i class="fa fa-anchor w3-padding-64 w3-text-red"></i> {% endcomment %}
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+{% endblock content %}

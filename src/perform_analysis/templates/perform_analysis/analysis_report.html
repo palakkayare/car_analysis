@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}customer data{% endblock title %}
+{% block style%}
+
+h3,h2{
+    margin-top: 5rem;
+}
+p{
+    text-align: center;
+}
+.box{
+    margin: auto; height: 3rem; background-color: #fde5ba; border-radius: 14px; padding: 9px 5px; margin-top: 1rem; width: max-content;
+}
+.graph{
+    display: flex; justify-content: center; align-items: center; width: 100%
+}
+
+{%endblock style%}
+
+{% block content %}
+    <div class="ui container" style="margin-top: 5rem;">
+        <h2 style="text-align: center; font-size: 2.2rem;">Strategic grouping</h2>
+        <p>This report will go through the strategic grouping phase of competitive analysis to define the strategic groups within the automotive industry in india using a mathematical methodology.</p>
+        <h2>This report will have two main part</h2>
+        <ul>
+            <li style="color: #f33b3b;">Exploratory Data analysis</li>
+            <li style="color: #f33b3b;">Clustering of car data</li>
+        </ul>
+
+        <h2>Important features regarding the dataset</h2>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ imp_features|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">Since the dataset is full of features, we will choose only a subset of useful features to work with, also we will clean the data to extract useful information</p>
+
+        <h2>Exploratory Data analysis</h2>
+
+        <h3>Now we find what is the main features regarding the car</h3>
+        {% if table%}
+            <div style="overflow: scroll">
+                {{table | safe}}
+            </div>
+        {% endif %}
+        <p class="box">We can see that there are 6 variants of the car in the market</p>
+
+        <h3>Now we check the distribution of some features in the dataset</h3>
+        <p>First we Check the price distribution, we will use both normal and log scales due to the huge difference in prices.<p>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ cars_price_data|safe }}" height={{primary_height}} width="auto">
+        </div>
+        <p class="box" style="margin-bottom: 5rem;">Seems like there is a lot of varaince in price we can check that by plotting a box plot</p>
+
+        <div class="graph">
+            <img src="data:image/png; base64, {{ box_plot_price|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box" style="margin-bottom: 5rem;">Seems there is a lot of outliers that form a very different type(s) of cars or to be mor exact there are very different categories in the automotive market</p>
+
+        <div class="graph">
+            <img src="data:image/png; base64, {{ cars_by_cars_body_type|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box" style="margin-bottom: 5rem;">SUV's Sedans and hatchbacks seems to be the dominating car types</p>
+
+        <div class="graph">
+            <img src="data:image/png; base64, {{ box_plot_price_of_every_bodytype|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">It's Clear that Car body type strongly affect the price</p>
+
+        <h3>Now we check cars by Fuel type</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ cars_count_by_fuel_type|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">Most cars seems to be run on petrol or diesel</p>
+
+        <h3>Now we check car by engine size</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ cars_count_by_engine_size|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">Seems like most of cars have engine size in the 1000:2000cc range</p>
+
+        <h3>Now We check the Horsepower of cars</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ cars_count_by_horsepower|safe }}" height={{secondary_height}} width="auto">
+        </div>
+
+        <h3>Now we check the relation horsepower and price considering different body type</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ relation_between_power_price|safe }}" height={{primary_height}} width="auto">
+        </div>
+        <p class="box">Horsepower of car seems to be highly related to car price but car body type seems a little bit blurry but hatchbacls seems to be the body type with the least horsepower and price</p>
+
+        <h3>We can also look into the relation between Mileage and price</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ relation_between_mileage_price|safe }}" height={{primary_height}} width="auto">
+        </div>
+        <p class="box">It's looks like expensive cars tend to have worse mileage</p>
+
+        <h3>We can also check the overall correlation of between variables and each other
+        <br/>First we make a pearson correlation grid</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ correlation_between_variables|safe }}" height={{primary_height}} width="auto">
+        </div>
+
+        <h3>Now we check an extensive scatter plot grid of more numerical variable to investigate the realtion in more detail</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ extensive_scatter_plot|safe }}" height={{primary_height}} width="auto">
+        </div>
+        <p class="box">Seems there are a lot of multicollinearity between variables</p>
+        
+        <h3>Now lets make a 3D scatter plot to check for obvious clusters with main features as price horsepower and mileage</h3>
+        <h3 style="margin-top: 1rem;">Using more interactive plot to show the previous plot and also adding the car manufacturer</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ threeD|safe }}" height="700px" width="auto">
+        </div>
+        <p class="box">As shown in previous figures clustring the market needs a lot of effort as the separation of clusters is not that obvious</p>
+
+        <br/>
+
+        <div style="margin: 4rem 0rem; border: 1px solid red; border-radius: 8px; padding: 2rem; background-color: #f5fffa;">
+            <p style="text-align: left">It's now clear that we have to look to many dimensions in order to cluster the market, as the more features we explore the harder it's to cluster the market. These dimensions affect the decision of the buyers not to mention it also precvied totally different due to the very different mental models of buyers, in other words, price horsepower and mileage are not everything, some buyers would like to have a long wheel base car, some would like to have wider car all of the previous features, and more, strongly affect the buyer' decisions.</p>
+            <p style="text-align: left">This means that two car can have very similar price and milage but one is a van with lots of space and the other is just a four doors sedan, these two cars are precieved as two different categories in the automotive industry so <b>space, length, width and height</b> of the car can also be a vital factor.</p>
+        </div>
+
+        <div style="display: grid; justify-content: center; justify-items: center; margin-bottom: 5rem" >
+            <p>So, a three dimensional representation won't tell everythings, so thats why we will try to consider clustering to use the very different features associated with each car</p>
+            <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'csvs:cluster_analysis_view' %}">Next</a>
+        </div>
+    </div>
+{% endblock content %}
+

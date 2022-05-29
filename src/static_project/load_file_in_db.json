@@ -1,0 +1,9 @@
+{
+    "model": "perform_analysis.csv",
+    "pk": 1,
+    "fields": {
+        "file_name": "static/cars.csv",
+        "uploaded": 1,
+        "activated": 0
+    }
+}

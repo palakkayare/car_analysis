@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title %}customer data{% endblock title %}
+
+{% block content %}
+<div class="ui container" style="margin-top:5rem;margin-bottom:5rem;">
+    <h1>Objective</h1>
+    <p>The main objective of this report is to be able to identify the strategic group of a car given a set of features to that car.<br/>
+        The Car we want to identify the strategic group for is Toyota Corolla which is known as Corolla Altis in india</p>
+        <img style="height: 300px; margin-left: 25%" src="{% static 'corolla.webp' %}" >
+        <p>The Corolla is a world wide best seller and it has been sold for many years, but as the automotive market became full of comptitiors an extensive analysis is needed to identifiy the strategic group competing with the company in the market</p>
+    <div class="ui divider"></div>
+    <h1>Approach</h1>
+    <p>This project will follow a mathematical approach using a method called clustring to acheive the objective of identifying strategic group.</p>
+    <div class="ui divider"></div>
+    <h2>Data</h2>
+    <p>The dataset used in this report is having the latest information about cars in the Indian market. The dataset contains cars with their variants, In dataset there are 1200+ model/variants to study. There is a variety of Makes/Models which can be studied, All prices has been converted from indian rupee to USD, The dataset has updated information till 4th June 2020. </p>
+    <div style="display: flex;justify-content: center;" >
+        <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'csvs:show_csv_data' %}">View dataset</a>
+    </div>
+    <div class="ui divider"></div>
+    <p>As we can see the above dataset has so many null values so we need to clean it before performing any analysis.</p>
+    <div style="display: flex;justify-content: center;" >
+        <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'csvs:show_cleaned_csv_data' %}">View cleaned dataset</a>
+    </div>
+    <div class="ui divider"></div>
+    <p>Lets move ahead and perform different analysis</p>
+    <div style="display: flex;justify-content: center;" >
+        <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'csvs:analysis_view' %}">Lets get started</a>
+    </div>
+</div>
+{% endblock content %}
+

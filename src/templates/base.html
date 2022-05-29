@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+
+<!--Required meta tags-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- jQuery-->
+<script src="https://code.jQuery.com/jQuery-3.3.1.min.js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Custom css-->
+<link rel='stylesheet' type='text/css' href={% static 'style.css' %}>
+<!-- semantic UI -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
+</script>
+
+<title>DJ PD Proj - {% block title%}{% endblock title %}</title>
+<style>{% block style%}{% endblock style %}</style>
+</head>
+
+<body style="background-color: #fdf2f2">
+
+  {% include 'navbar.html' %}
+    <div class ='ui container' style="margin: 0px !important; width: 100%; font-size: 1.2rem !important">
+{% block content %}
+{% endblock content %}
+    </div>
+ <script type='text/javascript' src= {% static 'main.js' %}></script>
+
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}customer data{% endblock title %}
+{% block style%}
+
+h3,h2{
+    margin-top: 5rem;
+}
+p{
+    text-align: center;
+}
+.box{
+    margin: auto; height: 3rem; background-color: #fde5ba; border-radius: 14px; padding: 9px 5px; margin-top: 1rem; width: max-content;
+}
+.graph{
+    display: flex; justify-content: center; align-items: center; width: 100%
+}
+
+{%endblock style%}
+
+{% block content %}
+    <div class="ui container" style="margin-top: 5rem;">
+        <h2 style="text-align: center; font-size: 2.2rem;">Clustering</h2>
+        <p style="text-align: left">Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). It is a main task of exploratory data analysis, and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics and machine learning.</p>
+        <p style="text-align: left"><b>The type of clustering used here is k-means clustering</b><br/>
+            k-means clustering is a method of vector quantization, originally from signal processing, that aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean (cluster centers or cluster centroid), serving as a prototype of the cluster. This results in a partitioning of the data space into Voronoi cells. k-means clustering minimizes within-cluster variances (squared Euclidean distances)</p>
+
+        <div style="margin: 4rem 0rem; border: 1px solid red; border-radius: 8px; padding: 2rem; background-color: #f5fffa;">
+            <h3>We will first peform below operations</h3>
+            <ul>
+                <li>We will drop the cars over 60k as they totally not a match for the corolla</li>
+                <li>Now we choose a collection of features to build 8 clusters of cars</li>
+                <li>Fitting K-means clustering model with 10 clusters and adding a cluster column to the dataset</li>
+            </ul>
+            <div style="display: flex;justify-content: center;" >
+                <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'csvs:clustered_data_view' %}">Click here to check the filtered dataset</a>
+            </div>
+        </div>
+        <h2>Now we check some scatter plots but with adding cluster<br/>Price vs Power</h2>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ price_vs_horsepower|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">We can see the the clusters are strongly affected by the price with clear speration between clusters but it's kind of blurry when it comes to power</p>
+
+        <h3>Power vs Mileage</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ power_vs_mileage|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box" style="margin-bottom: 5rem;">But yet we can see that clusters speration in power is stronger than mileage which almost have no separation of clusters</p>
+
+        <h3>Engine size vs Fuel tank</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ fuel_tank_vs_engine_size|safe }}" height={{secondary_height}} width="auto">
+        </div>
+
+        <h3>Now we make an interactive 3D scatter plot of price power, and mileage using also clusters</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ price_vs_power_vs_mileage|safe }}" height="700px" width="auto">
+        </div>
+    
+
+        <h3>Now we check the average prices of each cluster</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ average_price|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">As shown in the scatter plits earlier there is a clear seperation of clusters when it comes to prices</p>
+
+        <h3>Now we check how many cars exists in each cluster</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ cars_count_in_each_cluster|safe }}" height={{secondary_height}} width="auto">
+        </div>
+        <p class="box">We can generally say that even if clusters generated are not determinant yet we can see that they still can be useful</p>
+
+
+        <h2>Finding the potential strategic group</h2>
+        <h3>First we find the cluster of the Toyota Corolla (and its variants)</h3>
+        {% if clusters_toyota_corolla%}
+            <div style="overflow: scroll">
+                {{clusters_toyota_corolla | safe}}
+            </div>
+        {% endif %}
+        
+        <h3>We found that the cluster of the corolla is cluster 1 and also cluster 5 we can now search these clusters and check what is interesting about it</h3>
+        {% if clusters_toyota_corolla%}
+            <div style="overflow: scroll; height: 500px;">
+                {{filtered_clusters_toyota_corolla | safe}}
+            </div>
+        {% endif %}
+
+
+        <h3>Now we check prices and number of cars in these clusters</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ make_count_of_cars|safe }}" height={{primary_height}} width="auto">
+        </div>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ make_price_of_cars|safe }}" height={{primary_height}} width="auto">
+        </div>
+
+        <h3>How about car body types in these clusters?</h3>
+        <div class="graph">
+            <img src="data:image/png; base64, {{ counts_of_body_type_vs_varients|safe }}" height={{primary_height}} width="auto">
+        </div>
+        <p class="box">seems like there are too many SUV's in the Toyota Clusters, should that be important?</p>
+
+        <h2>How is that any useful?</h2>
+        <p style="text-align: left">With clustring there are too many variable taken in considration which are hard to be traced by normal methods. The clusters generated by the KMeans model can be used to identify what is the strategic group that form a strong competition to the company products in the market it also show the close clusters to this group which also can be put in considration in some cases.</p>
+
+        <h3>Problem with clustring</h3>
+        <p style="text-align: left">As tempting as it's to use clustring to produce strategic groups it worth mentioning that the clustring process itself is a little bit ambigous and features contribution to the clustering process can't be easily explained so the overall interpretability of the model forms a challenge</p>
+
+        <h3>So is it worthless?!</h3>
+        <p style="text-align: left; margin-bottom: 7rem;">Absolutely not!, clustring may be not determinant but it can be used to augment the management decision by using it side by side with human intuition to come out with the right strategic group</p>
+
+
+        <h2 style="text-align:center; margin-bottom: 10rem;">Thank you!</h2>
+
+    </div>
+{% endblock content %}
+
